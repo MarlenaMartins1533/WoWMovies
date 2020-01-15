@@ -2,6 +2,7 @@ package com.marlena.wowmovies.model.response
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import com.marlena.wowmovies.model.domain.Movie
 
 data class MovieResponse(
 
@@ -15,5 +16,5 @@ data class MovieResponse(
 
     @SerializedName("results")
     @Expose
-    val results: List<TheMovie>
+    val results: List<Movie>
 )

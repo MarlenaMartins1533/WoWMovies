@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_movies">
+    app:startDestination="@+id/navigation_home">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_movies"
-        android:name="com.marlena.wowmovies.scenes.moviesList.MoviesListFragment"
+        android:name="com.marlena.wowmovies.scenes.genreLists.MoviesListFragment"
         android:label="@string/menu_movie"
         tools:layout="@layout/fragment_movie" />
 

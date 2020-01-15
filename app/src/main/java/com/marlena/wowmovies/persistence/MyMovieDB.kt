@@ -7,21 +7,21 @@ import androidx.room.RoomDatabase
 import com.marlena.wowmovies.model.entity.InfoEntity
 
 @Database(entities = [InfoEntity::class], version = 1)
-abstract class MyPicturesDB : RoomDatabase() {
+abstract class MyMovieDB : RoomDatabase() {
 
     companion object {
-        lateinit var instance: MyPicturesDB private set
+        lateinit var instance: MyMovieDB private set
 
         fun initialize(applicationContext: Context) {
             instance = Room.databaseBuilder(
                 applicationContext,
-                MyPicturesDB::class.java,
-                "mypictures.db"
+                MyMovieDB::class.java,
+                "mymovies.db"
             ).apply {
                 allowMainThreadQueries()
             }.build()
         }
     }
 
-    abstract fun mypicturesDAO(): MyPicturesDAO
+    abstract fun mymoviesDAO(): MyMovieDAO
 }

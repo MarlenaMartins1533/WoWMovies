@@ -18,19 +18,19 @@
     <string name="movie_id">ID</string>
     <string name="communicate">More</string>
     <string name="error">Erro na solicitação</string>
-    <string name="name">Nome:</string>
-    <string name="url">Url:</string>
+    <string name="title">Nome:</string>
+    <string name="poster_path">Url:</string>
     <string name="overview">Resumo:</string>
     <string name="release_date">Lançamento: </string>
     <string name="scrolling">Mais informações</string>
-    <string name="tip">P.S: Marque o Checkboxdas moviens que mais gostar para armazena-las aqui!</string>
+    <string name="tip">P.S: Marque o Checkbox dos filmes que você já assistiu para mostra-los aqui!</string>
     <string name="didYouLikeIt">Deixe seus comentários:</string>
-    <string name="sensations">Sensações:</string>
+    <string name="description">Descrição:</string>
     <string name="save">Save</string>
     <string name="help">DICAS DE COMO UTILIZAR ESSE APP</string>
 
+    <string name="hello">Olá, seja bem vindo!!</string>
     <string name="instructions">
-        Olá, seja bem vindo!!
         Para aproveitar bem o conteúdo desse aplicativo, sugerimos que:
         1) Abra as listas de filmes, escolha um:
          - Se assistiu: deixe comentários sobre aquele filme.
@@ -41,4 +41,5 @@
         assistido (prós e contras). Aproveite!!
     </string>
     <string name="options">Options</string>
+    <string name="movie_image">Imagem do Filme</string>
 </resources>

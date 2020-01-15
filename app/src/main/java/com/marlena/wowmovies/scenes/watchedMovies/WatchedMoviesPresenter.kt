@@ -1,8 +1,8 @@
 package com.marlena.wowmovies.scenes.watchedMovies
 
-import com.marlena.wowmovies.model.domain.ThePicture
+import com.marlena.wowmovies.model.domain.Movie
 import com.marlena.wowmovies.model.entity.InfoEntity
-import com.marlena.wowmovies.persistence.MyPicturesDB
+import com.marlena.wowmovies.persistence.MyMovieDB
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
@@ -12,26 +12,26 @@ class WatchedMoviesPresenter(private val view: WatchedMovies.View) : WatchedMovi
 
     override fun getAllList() {
         job = launch {
-            val myPicturesList = ArrayList<InfoEntity>()
+            val myMoviesList = ArrayList<InfoEntity>()
 
             withContext(Dispatchers.IO) {
-                MyPicturesDB.instance.mypicturesDAO().getAllMyPictures().let {
-                    myPicturesList.addAll(it)
+                MyMovieDB.instance.mymoviesDAO().getAllMyMovies().let {
+                    myMoviesList.addAll(it)
                 }
             }
-            val thePictureList = convertMyPicturesListInToDomain(myPicturesList)
-            view.setAllList(thePictureList)
+            val movieList = convertMyMoviesListInToDomain(myMoviesList)
+            view.setAllList(movieList)
         }
     }
 
-    private fun convertMyPicturesListInToDomain(
+    private fun convertMyMoviesListInToDomain(
         infoList: MutableList<InfoEntity>
-    ): List<ThePicture> {
+    ): List<Movie> {
 
         return infoList.map {
-            ThePicture(
-                name = it.name,
-                url = it.url
+            Movie(
+                title = it.title,
+                poster_path = it.poster_path
             )
         }
     }

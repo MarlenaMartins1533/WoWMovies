@@ -1,4 +1,4 @@
-package com.marlena.wowmovies.scenes.moviesList
+package com.marlena.wowmovies.scenes.genreLists
 
 import com.marlena.wowmovies.core.App
 import kotlinx.coroutines.*

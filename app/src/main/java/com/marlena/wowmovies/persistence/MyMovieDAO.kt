@@ -7,13 +7,13 @@ import androidx.room.Query
 import com.marlena.wowmovies.model.entity.InfoEntity
 
 @Dao
-interface MyPicturesDAO {
+interface MyMovieDAO {
 
-    @Query("SELECT * FROM mypicture")
-    fun getAllMyPictures(): List<InfoEntity>
+    @Query("SELECT * FROM mymovie")
+    fun getAllMyMovies(): List<InfoEntity>
 
-    @Query("SELECT * FROM mypicture WHERE url = :url")
-    fun getByUrl(url: String): InfoEntity
+    @Query("SELECT * FROM mymovie WHERE poster_path = :poster_path")
+    fun getByPosterPath(poster_path: String): InfoEntity
 
     @Insert
     fun insert(info: InfoEntity)

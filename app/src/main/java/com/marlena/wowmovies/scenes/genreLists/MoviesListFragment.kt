@@ -1,4 +1,4 @@
-package com.marlena.wowmovies.scenes.moviesList
+package com.marlena.wowmovies.scenes.genreLists
 
 import android.app.ActivityOptions
 import android.content.Intent
@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.marlena.wowmovies.R
 import com.marlena.wowmovies.data.Constants
-import com.marlena.wowmovies.model.response.TheMovie
+import com.marlena.wowmovies.model.domain.Movie
 import com.marlena.wowmovies.scenes.adapters.movieadapter.MovieAdapter
 import com.marlena.wowmovies.scenes.theMovie.TheMovieActivity
 import kotlinx.android.synthetic.main.fragment_movie.*
@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_movie.*
 class MoviesListFragment : Fragment(),
     MoviesList.View, MovieAdapter.Listener {
 
-    private val movieList = mutableListOf<TheMovie>()
+    private val movieList = mutableListOf<Movie>()
     private lateinit var presenter: MoviesListPresenter
     private var adapter: MovieAdapter? = null
 
@@ -56,7 +56,7 @@ class MoviesListFragment : Fragment(),
         presenter.getMoviesList()
     }
 
-    override fun setList(list: List<TheMovie>) {
+    override fun setList(list: List<Movie>) {
         movieList.clear()
         movieList.addAll(list)
 
@@ -67,7 +67,7 @@ class MoviesListFragment : Fragment(),
         Toast.makeText(context, "Erro na solicitação", Toast.LENGTH_LONG).show()
     }
 
-    override fun openPictureFragment(movie: TheMovie, itemView: View) {
+    override fun openMovieFragment(movie: Movie, itemView: View) {
 
         val options = ActivityOptions.makeSceneTransitionAnimation(
             activity,

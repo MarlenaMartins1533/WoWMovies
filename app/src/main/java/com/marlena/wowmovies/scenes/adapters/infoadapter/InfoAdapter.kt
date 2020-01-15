@@ -5,43 +5,39 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.marlena.wowmovies.R
-import com.marlena.wowmovies.model.domain.ThePicture
+import com.marlena.wowmovies.model.domain.Movie
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.item_picture.view.*
+import kotlinx.android.synthetic.main.item_movie.view.*
 
 class InfoAdapter(
-    private val pictureList: List<ThePicture>,
+    private val movieList: List<Movie>,
     private val listener: Listener
-) : RecyclerView.Adapter<InfoAdapter.PictureViewHolder>() {
+) : RecyclerView.Adapter<InfoAdapter.MovieViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PictureViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_picture, parent, false)
-        return PictureViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
+        return MovieViewHolder(view)
     }
 
-    override fun getItemCount() = pictureList.size
+    override fun getItemCount() = movieList.size
 
-    override fun onBindViewHolder(holder: PictureViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.bindView(position)
     }
 
-    inner class PictureViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class MovieViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bindView(position: Int) {
-            itemView.image_titleTXT?.text = pictureList[position].name
+            itemView.image_titleTXT?.text = movieList[position].title
 
             Picasso.get()
-                .load(pictureList[position].url)
+                .load(movieList[position].poster_path)
                 .error(R.drawable.alerta_790x400)
                 .into(itemView.imageIMG)
             itemView.itemCV.isClickable = true
 
             itemView.itemCV.setOnClickListener {
-                listener.openPictureFragment(
-                    pictureList[position],
-//                    pictureList[position].name,
-//                    pictureList[position].url,
-//                    "",
-//                    pictureList[position].sensations,
+                listener.openMovieFragment(
+                    movieList[position],
                     itemView
                 )
             }
@@ -49,6 +45,6 @@ class InfoAdapter(
     }
 
     interface Listener {
-        fun openPictureFragment(picture: ThePicture, itemView: View)
+        fun openMovieFragment(movie: Movie, itemView: View)
     }
 }

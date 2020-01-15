@@ -1,10 +1,10 @@
 package com.marlena.wowmovies.scenes.watchedMovies
 
-import com.marlena.wowmovies.model.domain.ThePicture
+import com.marlena.wowmovies.model.domain.Movie
 
 interface WatchedMovies {
     interface View {
-        fun setAllList(list: List<ThePicture>)
+        fun setAllList(list: List<Movie>)
     }
 
     interface Presenter {

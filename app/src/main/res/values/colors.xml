@@ -10,6 +10,7 @@
     <color name="colorButton">#009688</color>
     <color name="colorText">#000000</color>
     <color name="colorTextButton">#FFFFFF</color>
+    <color name="ic_wow_movies_background">#BCBCFF</color>
 
     <color name="colorBlack">#000000</color>
 </resources>

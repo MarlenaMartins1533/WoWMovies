@@ -1,6 +1,6 @@
 package com.marlena.wowmovies.scenes.theMovie
 
-import com.marlena.wowmovies.model.domain.ThePicture
+import com.marlena.wowmovies.model.domain.Movie
 import com.marlena.wowmovies.model.entity.InfoEntity
 
 interface TheMovie {
@@ -11,9 +11,9 @@ interface TheMovie {
     }
 
     interface Presenter {
-        fun insertMyPicture(thePicture: ThePicture, sensations: String)
-        fun deletePicture(url: String)
-        fun getMyPictureByUrl(url: String): InfoEntity?
-        fun getSensations(url: String): String
+        fun insertMyMovie(movie: Movie, description: String)
+        fun deleteMovie(poster_path: String)
+        fun getMyMovieByUrl(poster_path: String): InfoEntity?
+        fun getDescription(poster_path: String): String
     }
 }

@@ -1,8 +1,8 @@
-package com.marlena.wowmovies.model.response
+package com.marlena.wowmovies.model.domain
 
 import com.google.gson.annotations.SerializedName
 
-data class TheMovie(
+data class Movie(
 
     @SerializedName("title")
     val title: String,
