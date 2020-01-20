@@ -11,10 +11,16 @@ class InfoEntity : Serializable {
     @PrimaryKey
     @ColumnInfo(name = "poster_path")
     var poster_path: String = "poster_path"
-    @ColumnInfo(name = "name")
+
+    @ColumnInfo(name = "backdrop_path")
+    var backdrop_path: String = "backdrop_path"
+
+    @ColumnInfo(name = "title")
     var title: String = "Atenção"
+
     @ColumnInfo(name = "favorite")
     var favorite: Boolean = true
+
     @ColumnInfo(name = "desc")
     var description: String = "description"
 }

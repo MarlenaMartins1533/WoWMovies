@@ -31,7 +31,8 @@ class WatchedMoviesPresenter(private val view: WatchedMovies.View) : WatchedMovi
         return infoList.map {
             Movie(
                 title = it.title,
-                poster_path = it.poster_path
+                poster_path = it.poster_path,
+                backdrop_path = it.backdrop_path
             )
         }
     }

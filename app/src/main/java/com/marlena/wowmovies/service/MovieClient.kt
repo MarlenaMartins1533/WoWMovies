@@ -2,6 +2,7 @@ package com.marlena.wowmovies.service
 
 import android.util.Log
 import com.marlena.wowmovies.data.Constants
+import com.marlena.wowmovies.model.response.GenreResponse
 import com.marlena.wowmovies.model.response.MovieResponse
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -25,6 +26,25 @@ class MovieClient {
             Log.e("IOException", e.message)
         } catch (e: RuntimeException) {
             Log.e("Runtime Exception", e.message)
+        }
+        return null
+    }
+
+    fun callGetGenres(): GenreResponse? {
+        val call = movieApi.getGenres()
+
+        try {
+            val response = call.execute()
+            if (response.isSuccessful) {
+                Log.d("LENA", "getGenres successful: ${response.body()?.toString()}")
+                return response.body()
+            } else {
+                Log.d("LENA", "getGenres Response Error: ${response.errorBody()?.toString()}")
+            }
+        } catch (e: IOException) {
+            Log.e("LENA", e.message)
+        } catch (e: RuntimeException) {
+            Log.e("LENA", e.message)
         }
         return null
     }

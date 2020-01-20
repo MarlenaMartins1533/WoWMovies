@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_themovie.*
 class TheMovieActivity : AppCompatActivity(), TheMovie.View {
 
     private lateinit var presenter: TheMoviePresenter
-    private lateinit var Movie: Movie
+    private lateinit var movie: Movie
     lateinit var description: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,8 +24,9 @@ class TheMovieActivity : AppCompatActivity(), TheMovie.View {
 
         presenter = TheMoviePresenter(this)
 
-        val poster_path = intent.getStringExtra("imageUrl") ?: ""
-        val title = intent.getStringExtra("imageName") ?: ""
+        val poster_path = intent.getStringExtra("imagePosterPath") ?: ""
+        val backdrop_path = intent.getStringExtra("imageBackdropPath") ?: ""
+        val title = intent.getStringExtra("imageTitle") ?: ""
         val overview = intent.getStringExtra("imageOverview") ?: ""
         description = presenter.getDescription(poster_path)
 
@@ -34,14 +35,15 @@ class TheMovieActivity : AppCompatActivity(), TheMovie.View {
         if (poster_path.isEmpty()) {
             movieIMG.setImageResource(R.drawable.alerta_790x400)
         } else {
-            setMovie(poster_path)
+            if (backdrop_path.isEmpty()) setImageMovie(poster_path)
+            setImageMovie(backdrop_path)
             setView(poster_path, title, overview)
-            initListener(poster_path, title)
+            initListener(poster_path, title, backdrop_path)
         }
     }
 
-    private fun setMovie(poster_path: String) {
-        Picasso.get().load(poster_path).into(movieIMG)
+    private fun setImageMovie(url_image: String) {
+        Picasso.get().load(url_image).into(movieIMG)
     }
 
     private fun setView(poster_path: String, title: String, overview: String) {
@@ -60,7 +62,7 @@ class TheMovieActivity : AppCompatActivity(), TheMovie.View {
         }
     }
 
-    private fun initListener(poster_path: String, title: String) {
+    private fun initListener(poster_path: String, backdrop_path: String, title: String) {
 
         my_movieCBX.setOnClickListener {
             if (my_movieCBX.isChecked) {
@@ -69,7 +71,7 @@ class TheMovieActivity : AppCompatActivity(), TheMovie.View {
                 showAlertDialog(
                     poster_path,
                     "Atenção!",
-                    "Você deseja remover essa imagem de Watched Movies?"
+                    "Você deseja remover esse filme de Watched Movies?"
                 )
             }
         }
@@ -79,8 +81,8 @@ class TheMovieActivity : AppCompatActivity(), TheMovie.View {
             if (description != "") {
                 descriptionTXT.text = description
                 commentsEDT.hint = ""
-                Movie = Movie(title, poster_path)
-                presenter.insertMyMovie(Movie, description)
+                movie = Movie(title, poster_path, backdrop_path)
+                presenter.insertMyMovie(movie, description)
                 onBackPressed()
             }
         }
@@ -147,6 +149,4 @@ class TheMovieActivity : AppCompatActivity(), TheMovie.View {
     companion object {
         const val TRANSITION_IMAGE = "image"
     }
-
-    fun showAlertDialog(view: View) {}
 }

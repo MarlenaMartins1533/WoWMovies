@@ -10,6 +10,9 @@ data class Movie(
     @SerializedName("poster_path")
     val poster_path: String,
 
+    @SerializedName("backdrop_path")
+    val backdrop_path: String,
+
     @SerializedName("overview")
     val overview: String = "unknown"
 )

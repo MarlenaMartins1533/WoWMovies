@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_movies"
-        android:name="com.marlena.wowmovies.scenes.genreLists.MoviesListFragment"
+        android:name="com.marlena.wowmovies.scenes.moviesList.MoviesListFragment"
         android:label="@string/menu_movie"
-        tools:layout="@layout/fragment_movie" />
+        tools:layout="@layout/fragment_movie_list" />
 
     <fragment
         android:id="@+id/navigation_watched"

@@ -18,16 +18,16 @@ class TheMoviePresenter(private val view: TheMovie.View) : TheMovie.Presenter {
                     info = convertDomainInToMyMovies(movie)
                     info.description = description
                     MyMovieDB.instance.mymoviesDAO().insert(info)
-                    view.showMessage("Imagem adicionada com SUCESSO!")
+                    view.showMessage("Filme adicionado com SUCESSO!")
                     view.onBackPressed()
                 }
                 description != info.description -> {
                     MyMovieDB.instance.mymoviesDAO().delete(info)
                     info.description = description
                     MyMovieDB.instance.mymoviesDAO().insert(info)
-                    view.showMessage("Sensations foi editada com SUCESSO.")
+                    view.showMessage("Descrição foi editada com SUCESSO.")
                 }
-                else -> view.showMessage("Atenção! Imagem já Existe")
+                else -> view.showMessage("Atenção!Filme já Existe")
             }
         }
     }
@@ -48,6 +48,7 @@ class TheMoviePresenter(private val view: TheMovie.View) : TheMovie.Presenter {
         val myMovie = InfoEntity()
 
         myMovie.poster_path = movie.poster_path
+        myMovie.backdrop_path = movie.backdrop_path
         myMovie.title = movie.title
         myMovie.favorite = true
         myMovie.description = ""
@@ -55,11 +56,11 @@ class TheMoviePresenter(private val view: TheMovie.View) : TheMovie.Presenter {
     }
 
     override fun deleteMovie(poster_path: String) {
-        val myPicture = getMyMovieByUrl(poster_path)
-        if (myPicture != null) {
-            MyMovieDB.instance.mymoviesDAO().delete(myPicture)
-            view.showMessage("Imagem retirada de My Gallery")
+        val myMovie = getMyMovieByUrl(poster_path)
+        if (myMovie != null) {
+            MyMovieDB.instance.mymoviesDAO().delete(myMovie)
+            view.showMessage("Filme retirado de Watched Movies")
         } else
-            view.showMessage("Imagem retirada de My Gallery")
+            view.showMessage("Filme retirado de Watched Movies")
     }
 }

@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:background="@color/colorButton"
-        android:elevation="5dp"
+        android:elevation="4dp"
         android:padding="8dp"
         android:text="@string/help"
         android:textAlignment="center"
