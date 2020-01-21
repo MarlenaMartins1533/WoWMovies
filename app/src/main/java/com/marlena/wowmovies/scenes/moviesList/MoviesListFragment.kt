@@ -34,8 +34,6 @@ class MoviesListFragment: Fragment(), MoviesList.View, MovieAdapter.Listener {
         savedInstanceState: Bundle?
     ): View? {
         presenter = MoviesListPresenter(this)
-        genreId = arguments?.getInt("GENRE_ID")?.let {it}?: -1
-        if (genreId == -1) displayFailure(2)
         return inflater.inflate(R.layout.fragment_movie_list, container, false)
     }
 
@@ -75,10 +73,8 @@ class MoviesListFragment: Fragment(), MoviesList.View, MovieAdapter.Listener {
     }
 
     override fun setMoviesListByGenre (list: List<Movie>) {
-        sectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager, this)
-        adapter = sectionsPagerAdapter.container.addOnPageChangeListener(
-            TabLayout.TabLayoutOnPageChangeListener(tabs)
-        )
+        sectionsPagerAdapter = SectionsPagerAdapter(childFragmentManager, this)
+        container.adapter = sectionsPagerAdapter
         tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
 
         setList(list)
