@@ -1,14 +1,15 @@
-package com.marlena.wowmovies.scenes.moviesList
+package com.marlena.wowmovies.scenes.movie
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.marlena.wowmovies.R
+import com.marlena.wowmovies.scenes.moviesList.MoviesListFragment
 
 
-class SectionsPagerAdapter(fm: FragmentManager, val view: MoviesListFragment) : FragmentPagerAdapter(fm) {
+class SectionsPagerAdapter(fm: FragmentManager, val view: MovieFragment) : FragmentPagerAdapter(fm) {
 
-    private val actionListFragment by lazy {MoviesListFragment.newInstance("Action") }
+    private val actionListFragment by lazy { MoviesListFragment.newInstance("Action") }
     private val dramaListFragment by lazy {MoviesListFragment.newInstance("Drama") }
     private val fantasyListFragment by lazy {MoviesListFragment.newInstance("Fantasy") }
     private val fictionListFragment by lazy {MoviesListFragment.newInstance("Science Fiction") }

@@ -10,20 +10,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.google.android.material.tabs.TabLayout
 import com.marlena.wowmovies.R
 import com.marlena.wowmovies.model.domain.Movie
 import com.marlena.wowmovies.model.response.GenreResponse
 import com.marlena.wowmovies.scenes.adapters.movieadapter.MovieAdapter
 import com.marlena.wowmovies.scenes.theMovie.TheMovieActivity
 import kotlinx.android.synthetic.main.fragment_movie_list.*
-import kotlinx.android.synthetic.main.fragment_page_genre.*
 
 class MoviesListFragment: Fragment(), MoviesList.View, MovieAdapter.Listener {
 
     private val movieList = mutableListOf<Movie>()
     private lateinit var presenter: MoviesListPresenter
-    private var sectionsPagerAdapter: SectionsPagerAdapter? = null
     private var page: String = " "
     private var adapter: MovieAdapter? = null
 
@@ -33,7 +30,7 @@ class MoviesListFragment: Fragment(), MoviesList.View, MovieAdapter.Listener {
         savedInstanceState: Bundle?
     ): View? {
         presenter = MoviesListPresenter(this)
-        return inflater.inflate(R.layout.fragment_page_genre, container, false)
+        return inflater.inflate(R.layout.fragment_movie_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -72,15 +69,15 @@ class MoviesListFragment: Fragment(), MoviesList.View, MovieAdapter.Listener {
     }
 
     override fun setMoviesListByGenre (list: List<Movie>) {
-        sectionsPagerAdapter = SectionsPagerAdapter(childFragmentManager, this)
-        container.adapter = sectionsPagerAdapter
-
-        container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
-        tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
-
+//        sectionsPagerAdapter = SectionsPagerAdapter(childFragmentManager, this)
+//        container.adapter = sectionsPagerAdapter
+//
+//        container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
+//        tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
+//
         setList(list)
-
-        adapter?.notifyDataSetChanged()
+//
+//        adapter?.notifyDataSetChanged()
     }
 
 
