@@ -12,9 +12,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
 import com.marlena.wowmovies.R
-import com.marlena.wowmovies.data.Constants
-import com.marlena.wowmovies.model.domain.Genre
 import com.marlena.wowmovies.model.domain.Movie
+import com.marlena.wowmovies.model.response.GenreResponse
 import com.marlena.wowmovies.scenes.adapters.movieadapter.MovieAdapter
 import com.marlena.wowmovies.scenes.theMovie.TheMovieActivity
 import kotlinx.android.synthetic.main.fragment_movie_list.*
@@ -25,7 +24,7 @@ class MoviesListFragment: Fragment(), MoviesList.View, MovieAdapter.Listener {
     private val movieList = mutableListOf<Movie>()
     private lateinit var presenter: MoviesListPresenter
     private var sectionsPagerAdapter: SectionsPagerAdapter? = null
-    private var genreId: Int = -1
+    private var page: String = " "
     private var adapter: MovieAdapter? = null
 
     override fun onCreateView(
@@ -34,7 +33,7 @@ class MoviesListFragment: Fragment(), MoviesList.View, MovieAdapter.Listener {
         savedInstanceState: Bundle?
     ): View? {
         presenter = MoviesListPresenter(this)
-        return inflater.inflate(R.layout.fragment_movie_list, container, false)
+        return inflater.inflate(R.layout.fragment_page_genre, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -68,13 +67,15 @@ class MoviesListFragment: Fragment(), MoviesList.View, MovieAdapter.Listener {
         movieList.addAll(list)
     }
 
-    override fun setGenresList(genreList: MutableList<Genre>?) {
-        presenter.getMoviesListByGenre(genreId, movieList, genreList)
+    override fun setGenresList(genreResponse: GenreResponse?) {
+        presenter.getMoviesListByGenre(page, movieList, genreResponse)
     }
 
     override fun setMoviesListByGenre (list: List<Movie>) {
         sectionsPagerAdapter = SectionsPagerAdapter(childFragmentManager, this)
         container.adapter = sectionsPagerAdapter
+
+        container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
         tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
 
         setList(list)
@@ -104,8 +105,8 @@ class MoviesListFragment: Fragment(), MoviesList.View, MovieAdapter.Listener {
 
         val intent = Intent(context, TheMovieActivity::class.java).apply {
             putExtra("imageTitle", movie.title)
-            putExtra("imagePosterPath", (Constants.imageUrlMovie + movie.poster_path))
-            putExtra("imageBackdropPath", (Constants.imageUrlMovie + movie.backdrop_path))
+            putExtra("imagePosterPath", (movie.poster_path))
+            putExtra("imageBackdropPath", (movie.backdrop_path))
             putExtra("imageOverview", "")
         }
         activity?.startActivity(intent, options.toBundle())
@@ -113,10 +114,10 @@ class MoviesListFragment: Fragment(), MoviesList.View, MovieAdapter.Listener {
     }
 
     companion object {
-        const val GENRE_ID = "GENRE_ID"
-        fun newInstance(genreId: Int) = MoviesListFragment().apply {
+        const val PAGE = "PAGE"
+        fun newInstance(page: String) = MoviesListFragment().apply {
             arguments = Bundle().apply {
-                putInt(GENRE_ID, genreId)
+                putString(PAGE, page)
             }
             return MoviesListFragment()
         }

@@ -8,10 +8,10 @@ import com.marlena.wowmovies.R
 
 class SectionsPagerAdapter(fm: FragmentManager, val view: MoviesListFragment) : FragmentPagerAdapter(fm) {
 
-    private val actionListFragment by lazy {MoviesListFragment.newInstance(0) }
-    private val dramaListFragment by lazy {MoviesListFragment.newInstance(1) }
-    private val fantasyListFragment by lazy {MoviesListFragment.newInstance(2) }
-    private val fictionListFragment by lazy {MoviesListFragment.newInstance(3) }
+    private val actionListFragment by lazy {MoviesListFragment.newInstance("Action") }
+    private val dramaListFragment by lazy {MoviesListFragment.newInstance("Drama") }
+    private val fantasyListFragment by lazy {MoviesListFragment.newInstance("Fantasy") }
+    private val fictionListFragment by lazy {MoviesListFragment.newInstance("Science Fiction") }
 
     override fun getItem(position: Int): Fragment {
         return when (position) {

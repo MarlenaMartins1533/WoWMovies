@@ -30,7 +30,7 @@ class InfoAdapter(
             itemView.image_titleTXT?.text = movieList[position].title
 
             Picasso.get()
-                .load(movieList[position].poster_path)
+                .load(movieList[position]. poster_path)
                 .error(R.drawable.alerta_790x400)
                 .into(itemView.imageIMG)
             itemView.itemCV.isClickable = true

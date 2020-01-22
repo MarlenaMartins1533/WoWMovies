@@ -12,19 +12,22 @@ class MoviesListPresenter(private val view: MoviesList.View): MoviesList.Present
     private var job: Job? = null
 
     override fun getMoviesListByGenre(
-        genreId: Int,
+        page: String,
         movieList: List<Movie>,
-        genreList: MutableList<Genre>?
+        genreResponse: GenreResponse?
     ){
-        var list: List<Movie>
-//
-//        genreList?.let { g ->
-//            if (g. == "Action") actionId = g.id
-//            if (g.name == "Drama") dramaId = g.id
-//            if (g.name == "Fantasy") fantasyId = g.id
-//            if (g.name == "Science Fiction") fictionId = g.id
-//        }
-//        view.setMoviesListByGenre(list)
+        val list = mutableListOf<Movie>()
+
+        genreResponse?.genres?.forEach { g ->
+            if (g.name == page) {
+                movieList.forEach { m ->
+                    m.genreIds?.forEach { it ->
+                        if (it == g.id) list.add(m)
+                    }
+                }
+            }
+        }
+        view.setMoviesListByGenre(list)
     }
 
     override fun getMoviesList() {
@@ -44,7 +47,7 @@ class MoviesListPresenter(private val view: MoviesList.View): MoviesList.Present
             val result = withContext(Dispatchers.IO) {
                 App.movieRepository.getGenreList()
             }
-            view.setGenresList(result?.genres)
+            view.setGenresList(result)
         }
     }
 

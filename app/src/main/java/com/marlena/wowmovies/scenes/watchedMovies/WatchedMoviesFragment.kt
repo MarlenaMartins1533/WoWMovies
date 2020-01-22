@@ -60,12 +60,16 @@ class WatchedMoviesFragment : Fragment(),
         movieList.clear()
         movieList.addAll(list)
 
-        if (movieList.isEmpty()) displayFailure(1)
+        if (movieList.isEmpty()) displayFailure()
         else adapter?.notifyDataSetChanged()
     }
 
-    private fun displayFailure(error: Int) {
-        Toast.makeText(context, getString(error), Toast.LENGTH_LONG).show()
+    private fun displayFailure() {
+        when (1) {
+            1 -> Toast.makeText(context, getString(R.string.erro1), Toast.LENGTH_LONG).show()
+            2 -> Toast.makeText(context,getString(R.string.erro2), Toast.LENGTH_LONG).show()
+            else -> Toast.makeText(context,getString(R.string.erro0), Toast.LENGTH_LONG).show()
+        }
     }
 
     override fun openMovieFragment(movie: Movie, itemView: View) {

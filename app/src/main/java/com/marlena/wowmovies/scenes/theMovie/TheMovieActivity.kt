@@ -81,7 +81,7 @@ class TheMovieActivity : AppCompatActivity(), TheMovie.View {
             if (description != "") {
                 descriptionTXT.text = description
                 commentsEDT.hint = ""
-                movie = Movie(title, poster_path, backdrop_path)
+                movie = Movie(title, null, poster_path, backdrop_path)
                 presenter.insertMyMovie(movie, description)
                 onBackPressed()
             }
